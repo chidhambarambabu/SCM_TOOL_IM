@@ -1,0 +1,23 @@
+{
+  "model_name": "FoodWaste_RandomForest_Regressor",
+  "version": "1.0.0",
+  "ci_id": "CI-07",
+  "algorithm": "RandomForestRegressor (n_estimators=100, max_depth=12)",
+  "training_samples": 12500,
+  "metrics": {
+    "R2_Score": 0.942,
+    "Mean_Absolute_Error_kg": 2.85,
+    "Root_Mean_Squared_Error": 3.74
+  },
+  "features": [
+    "day_of_week_encoded",
+    "expected_footfall",
+    "historical_avg_sales_inr",
+    "inventory_level_kg",
+    "weather_condition_encoded",
+    "holiday_event_flag"
+  ],
+  "target": "surplus_food_kg",
+  "last_trained": "2026-10-18T10:30:00Z",
+  "change_request": "CR-001"
+}
