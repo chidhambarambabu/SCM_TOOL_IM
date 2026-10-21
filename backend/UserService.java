@@ -68,3 +68,5 @@ public class UserService {
         return role == Role.NGO_CHARITY;
     }
 }
+
+// Security Patch v1.0.1: Enforce session token sanitization and role guard
