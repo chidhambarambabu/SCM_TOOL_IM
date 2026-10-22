@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "FoodWaste_SCM_API_Collection",
+    "description": "Integration Test Collection for SCM Tool Demonstration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get SCM Health & Status",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/scm/status"
+      }
+    },
+    {
+      "name": "List All Donations",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/api/donations"
+      }
+    },
+    {
+      "name": "Create New Food Donation",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/donations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"donor\":\"VIT Cafeteria\",\"item\":\"Dal & Roti\",\"quantityKg\":20}"
+        }
+      }
+    },
+    {
+      "name": "Claim Food Donation",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/donations/1/claim",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"ngoName\":\"Annam Food Bank\"}"
+        }
+      }
+    }
+  ]
+}
