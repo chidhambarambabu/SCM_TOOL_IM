@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Food Waste Reduction & Donation Management System</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Header Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand-group">
+                <div class="brand-logo">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+                        <path d="M12 6v6l4 2"></path>
+                        <path d="M16 2v4"></path>
+                        <path d="M8 2v4"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">FoodSave AI</span>
+                    <span class="brand-subtitle">AI Food Waste Reduction & Donation System</span>
+                </div>
+            </div>
+
+            <!-- SCM Status Pill Badge -->
+            <div class="scm-live-badge">
+                <span class="pulse-indicator"></span>
+                <span class="scm-tag">SCM Tool: <strong>GitHub</strong></span>
+                <span class="divider">|</span>
+                <span class="scm-tag">Release: <strong>v1.0.0</strong></span>
+                <span class="divider">|</span>
+                <span class="scm-tag branch-tag">branch: <strong>main</strong></span>
+            </div>
+
+            <nav class="nav-links">
+                <button class="nav-btn active" data-tab="overview">Overview</button>
+                <button class="nav-btn" data-tab="donate">Donate Food</button>
+                <button class="nav-btn" data-tab="ngo-feed">Live NGO Feed <span class="badge" id="live-count-badge">3</span></button>
+                <button class="nav-btn" data-tab="ai-predictor">AI Predictor</button>
+                <button class="nav-btn" data-tab="pickups">Pickups</button>
+                <button class="nav-btn scm-hub-btn" data-tab="scm-hub">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    SCM Hub
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-container">
+        <!-- ============================================== -->
+        <!-- TAB 1: OVERVIEW -->
+        <!-- ============================================== -->
+        <section id="tab-overview" class="tab-pane active">
+            <div class="hero-card">
+                <div class="hero-badge">VIT University • Software Configuration Management (ISWE403L)</div>
+                <h1 class="hero-title">AI-Based Food Waste Reduction & Donation Management System</h1>
+                <p class="hero-desc">
+                    An intelligent real-time bridge connecting restaurants, hotels, supermarkets, and university cafeterias with local NGOs to predict surplus food, eliminate landfill waste, and feed communities in need.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="switchTab('donate')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        Donate Surplus Food
+                    </button>
+                    <button class="btn btn-secondary" onclick="switchTab('ai-predictor')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        Test AI Waste Predictor
+                    </button>
+                    <button class="btn btn-outline" onclick="switchTab('scm-hub')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        Explore GitHub SCM Artifacts
+                    </button>
+                </div>
+
+                <!-- Academic Info Tag -->
+                <div class="academic-tag">
+                    <span><strong>Student:</strong> Dravid Anand B (23MIS0036)</span>
+                    <span><strong>Faculty:</strong> Senthil Kumar P</span>
+                    <span><strong>Course:</strong> ISWE403L (Slot E1+TE1)</span>
+                    <span><strong>Tool:</strong> Git & GitHub</span>
+                </div>
+            </div>
+
+            <!-- Impact Metrics Counters -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </div>
+                    <div class="stat-value" id="stat-food-saved">1,480 kg</div>
+                    <div class="stat-label">Edible Food Saved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="stat-value" id="stat-meals-donated">3,700</div>
+                    <div class="stat-label">Nutritious Meals Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <div class="stat-value">3.70 Tons</div>
+                    <div class="stat-label">CO2e Emissions Prevented</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <div class="stat-value">13 / 13</div>
+                    <div class="stat-label">CIs Baselined & Verified</div>
+                </div>
+            </div>
+
+            <!-- Core Modules Grid -->
+            <div class="features-section">
+                <h2 class="section-heading">Integrated System Capabilities (Sprint 1 - 6)</h2>
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="feature-num">01</div>
+                        <h3>Surplus Food Registration</h3>
+                        <p>Self-service donor interface for hotels, supermarkets, and cafeterias to list edible surplus with food safety & storage parameters.</p>
+                        <span class="ci-badge">CI-06: Source Code</span>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-num">02</div>
+                        <h3>AI Waste Prediction Engine</h3>
+                        <p>Scikit-Learn Random Forest Regressor forecasting kitchen excess up to 48 hours ahead based on footfall, weather, and day factors.</p>
+                        <span class="ci-badge">CI-07: AI Model</span>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-num">03</div>
+                        <h3>Real-Time NGO Matching</h3>
+                        <p>Instant notification broadcast to verified charitable organizations with single-click reservation and pickup allocation.</p>
+                        <span class="ci-badge">CI-02: SRS (CR-002)</span>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-num">04</div>
+                        <h3>Automated Pickup Logistics</h3>
+                        <p>Optimized volunteer scheduling respecting the 4-hour hot food safety window with step-by-step dispatch tracking.</p>
+                        <span class="ci-badge">CI-04: SDD (CR-003)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 2: DONATE SURPLUS FOOD -->
+        <!-- ============================================== -->
+        <section id="tab-donate" class="tab-pane">
+            <div class="card form-card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Register Surplus Food Donation</h2>
+                        <p class="card-subtitle">Food Donors: Restaurants, Supermarkets, Hotels & University Dining</p>
+                    </div>
+                    <span class="badge badge-success">Food Safety Protocol: Active</span>
+                </div>
+
+                <form id="donation-form" onsubmit="handleDonationSubmit(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="donor-name">Donor Organization Name *</label>
+                            <input type="text" id="donor-name" required placeholder="e.g. Radisson Blu Hotel Kitchen" value="Radisson Blu Hotel Kitchen">
+                        </div>
+                        <div class="form-group">
+                            <label for="donor-type">Donor Category *</label>
+                            <select id="donor-type" required>
+                                <option value="Hotel">Hotel</option>
+                                <option value="Restaurant">Restaurant</option>
+                                <option value="Supermarket">Supermarket</option>
+                                <option value="University Cafeteria">University Cafeteria</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="food-item">Food Item & Description *</label>
+                            <input type="text" id="food-item" required placeholder="e.g. 40 Trays of Paneer Pulao, Chapati & Dal Fry" value="40 Trays of Paneer Pulao, Chapati & Dal Fry">
+                        </div>
+                        <div class="form-group">
+                            <label for="food-category">Food Classification *</label>
+                            <select id="food-category" required>
+                                <option value="Cooked Meals">Cooked Meals (Ready to Eat)</option>
+                                <option value="Bakery & Pastry">Bakery & Pastry</option>
+                                <option value="Fresh Produce">Fresh Fruits & Vegetables</option>
+                                <option value="Packaged Goods">Sealed Packaged Foods</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity-kg">Net Quantity (in Kilograms) *</label>
+                            <input type="number" id="quantity-kg" step="0.5" min="1" required placeholder="e.g. 25" value="25" oninput="updateServingsEstimate()">
+                        </div>
+                        <div class="form-group">
+                            <label for="servings-est">Estimated Servings / Meals</label>
+                            <input type="number" id="servings-est" readonly value="62" class="readonly-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="expiry-hours">Safe Consumption Window (Hours) *</label>
+                            <select id="expiry-hours" required>
+                                <option value="2">2 Hours (Immediate Pickup)</option>
+                                <option value="4" selected>4 Hours (Standard Safe Window)</option>
+                                <option value="8">8 Hours (Chilled Food)</option>
+                                <option value="24">24 Hours (Bakery / Dry)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storage-req">Storage Condition Required (CR-004) *</label>
+                            <select id="storage-req" required>
+                                <option value="Hot Insulated">Hot Insulated (Keep >60°C)</option>
+                                <option value="Refrigerated">Refrigerated (Keep &lt;4°C)</option>
+                                <option value="Ambient Dry">Ambient Dry Room Temperature</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-address">Pickup Location Address *</label>
+                            <input type="text" id="pickup-address" required placeholder="Address & Gate Details" value="Main Kitchen Delivery Gate, GST Road">
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <div class="safety-note">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <span>Submissions automatically notify registered NGOs within 15 km via real-time dispatcher.</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                            Publish Donation to NGOs
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 3: LIVE NGO COORDINATION FEED -->
+        <!-- ============================================== -->
+        <section id="tab-ngo-feed" class="tab-pane">
+            <div class="section-header-row">
+                <div>
+                    <h2 class="section-title">Live Surplus Food Claiming Board</h2>
+                    <p class="section-subtitle">Real-time matching platform for Charitable Trusts, Food Banks, and NGOs</p>
+                </div>
+                <div class="filter-controls">
+                    <button class="filter-chip active" onclick="filterDonations('ALL', this)">All Items</button>
+                    <button class="filter-chip" onclick="filterDonations('AVAILABLE', this)">Available Only</button>
+                    <button class="filter-chip" onclick="filterDonations('CLAIMED', this)">Claimed</button>
+                </div>
+            </div>
+
+            <div id="donations-container" class="cards-grid">
+                <!-- Dynamically populated via app.js -->
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 4: AI WASTE PREDICTOR (SCIKIT-LEARN SIMULATION) -->
+        <!-- ============================================== -->
+        <section id="tab-ai-predictor" class="tab-pane">
+            <div class="card-split">
+                <!-- Input Panel -->
+                <div class="card predictor-form-card">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">AI Surplus Forecast Engine</h2>
+                            <p class="card-subtitle">Scikit-learn Random Forest Model (CI-07, CR-001)</p>
+                        </div>
+                        <span class="badge badge-purple">ML R²: 0.942</span>
+                    </div>
+
+                    <form id="ai-predict-form" onsubmit="handlePredictionRun(event)">
+                        <div class="form-group">
+                            <label for="ai-day">Day of the Week</label>
+                            <select id="ai-day">
+                                <option value="Monday">Monday (Low Footfall)</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday" selected>Friday (High Dinner Footfall)</option>
+                                <option value="Saturday">Saturday (Peak Demand)</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ai-footfall">Expected Guest Footfall</label>
+                            <input type="range" id="ai-footfall" min="50" max="1000" step="25" value="450" oninput="updateFootfallDisplay(this.value)">
+                            <div class="range-display"><span id="footfall-val">450</span> patrons</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ai-sales">Historical Daily Sales (₹)</label>
+                            <input type="number" id="ai-sales" value="12000" step="500">
+                        </div>
+                        <div class="form-group">
+                            <label for="ai-inventory">Current Raw Inventory Reserve (kg)</label>
+                            <input type="number" id="ai-inventory" value="85" step="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="ai-weather">Weather / Event Conditions</label>
+                            <select id="ai-weather">
+                                <option value="Sunny / Clear" selected>Sunny / Clear Weather</option>
+                                <option value="Rainy / Cold">Rainy / Cold (Turnout Drops)</option>
+                                <option value="Festival / Event">Festival / College Event (High Variance)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary full-width">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            Compute Surplus Prediction
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Prediction Result Dashboard -->
+                <div class="card predictor-result-card" id="ai-result-panel">
+                    <div class="card-header">
+                        <h2 class="card-title">Prediction & Optimization Output</h2>
+                        <span class="badge badge-success" id="ai-confidence-badge">95.5% Confidence</span>
+                    </div>
+
+                    <div class="prediction-metrics">
+                        <div class="metric-box highlight">
+                            <div class="metric-caption">Forecasted Surplus Food</div>
+                            <div class="metric-number" id="res-surplus-kg">34.3 kg</div>
+                            <div class="metric-sub" id="res-surplus-meals">~86 Standard Meals</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-caption">Potential CO2 Savings</div>
+                            <div class="metric-number text-green" id="res-co2-saved">85.8 kg</div>
+                            <div class="metric-sub">Carbon emissions avoided</div>
+                        </div>
+                    </div>
+
+                    <div class="prescription-box">
+                        <div class="prescription-header">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <strong>Prescriptive Kitchen Recommendation:</strong>
+                        </div>
+                        <p id="res-recommendation">
+                            High Surplus Alert (34.3 kg). Pre-notify local NGOs 3 hours in advance. Reduce kitchen prep batch by 13.7 kg.
+                        </p>
+                    </div>
+
+                    <div class="model-meta-info">
+                        <div><strong>Algorithm:</strong> Scikit-Learn RandomForestRegressor</div>
+                        <div><strong>Features Evaluated:</strong> Footfall, Inventory, Weather, Day</div>
+                        <div><strong>Traceability:</strong> CI-07 • Verified by Test TC-03</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 5: PICKUP LOGISTICS TRACKER -->
+        <!-- ============================================== -->
+        <section id="tab-pickups" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 class="card-title">Volunteer Dispatch & Pickup Tracker</h2>
+                        <p class="card-subtitle">Real-time custody tracking adhering to food safety timelines (CR-003)</p>
+                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="advanceActivePickup()">Simulate Next Stage</button>
+                </div>
+
+                <div class="pickup-card-content">
+                    <div class="pickup-header-details">
+                        <div><strong>Active Order:</strong> <span class="mono" id="active-pkp-id">PKP-4821</span></div>
+                        <div><strong>Donating Kitchen:</strong> Hyatt Regency Kitchen</div>
+                        <div><strong>Recipient NGO:</strong> Annam Food Bank</div>
+                        <div><strong>Assigned Volunteer:</strong> Ramesh Kumar (TN-23-AB-4021)</div>
+                    </div>
+
+                    <!-- Progress Stepper -->
+                    <div class="stepper-container">
+                        <div class="step-item completed" id="step-1">
+                            <div class="step-circle">1</div>
+                            <div class="step-title">Scheduled</div>
+                            <div class="step-time">12:30 PM</div>
+                        </div>
+                        <div class="step-line active" id="line-1"></div>
+                        <div class="step-item completed" id="step-2">
+                            <div class="step-circle">2</div>
+                            <div class="step-title">Assigned</div>
+                            <div class="step-time">12:45 PM</div>
+                        </div>
+                        <div class="step-line active" id="line-2"></div>
+                        <div class="step-item in-progress" id="step-3">
+                            <div class="step-circle">3</div>
+                            <div class="step-title">En Route</div>
+                            <div class="step-time">In Transit</div>
+                        </div>
+                        <div class="step-line" id="line-3"></div>
+                        <div class="step-item" id="step-4">
+                            <div class="step-circle">4</div>
+                            <div class="step-title">Collected</div>
+                            <div class="step-time">Pending</div>
+                        </div>
+                        <div class="step-line" id="line-4"></div>
+                        <div class="step-item" id="step-5">
+                            <div class="step-circle">5</div>
+                            <div class="step-title">Delivered</div>
+                            <div class="step-time">Final Step</div>
+                        </div>
+                    </div>
+
+                    <div class="dispatch-notes">
+                        <strong>Logistics Status:</strong> <span id="pkp-status-desc">Volunteer Ramesh is en route to Hyatt Regency Kitchen. Estimated arrival in 12 mins. Temperature-insulated containers verified.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- TAB 6: SCM & GITHUB TRACEABILITY HUB -->
+        <!-- ============================================== -->
+        <section id="tab-scm-hub" class="tab-pane">
+            <div class="scm-hub-banner">
+                <div class="scm-banner-left">
+                    <div class="repo-link-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                        </svg>
+                        <span>GitHub Repository:</span>
+                        <a href="https://github.com/chidhambarambabu/SCM_TOOL_IM.git" target="_blank" class="repo-url">chidhambarambabu/SCM_TOOL_IM</a>
+                    </div>
+                    <h2>Software Configuration Management Traceability Hub</h2>
+                    <p>Comprehensive audit of all 13 Configuration Items, Change Control Board records, Git branching strategy, and FCA/PCA verification.</p>
+                </div>
+                <div class="scm-metrics-box">
+                    <div class="scm-metric-item">
+                        <span class="scm-m-val">13 / 13</span>
+                        <span class="scm-m-lbl">CIs Baselined</span>
+                    </div>
+                    <div class="scm-metric-item">
+                        <span class="scm-m-val">4</span>
+                        <span class="scm-m-lbl">Approved CRs</span>
+                    </div>
+                    <div class="scm-metric-item">
+                        <span class="scm-m-val">100%</span>
+                        <span class="scm-m-lbl">FCA/PCA Pass</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCM Sub-Tabs -->
+            <div class="sub-tab-bar">
+                <button class="sub-tab active" onclick="switchSubTab('ci-register', this)">Configuration Items Register</button>
+                <button class="sub-tab" onclick="switchSubTab('branching', this)">Branching & GitFlow</button>
+                <button class="sub-tab" onclick="switchSubTab('cr-tracking', this)">Change Requests (CRs)</button>
+                <button class="sub-tab" onclick="switchSubTab('audits', this)">FCA / PCA Audits</button>
+            </div>
+
+            <!-- SubTab 1: CI Register Table -->
+            <div id="sub-ci-register" class="sub-pane active">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Configuration Item Status Accounting (CSA) Register</h3>
+                        <span class="table-subtitle">Tracking items established in Review 1 & Review 2</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="scm-table">
+                            <thead>
+                                <tr>
+                                    <th>CI ID</th>
+                                    <th>Configuration Item</th>
+                                    <th>Current Version</th>
+                                    <th>Owning Team</th>
+                                    <th>Associated Baseline</th>
+                                    <th>Approval Status</th>
+                                    <th>Repository Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="mono-badge">CI-01</span></td>
+                                    <td>Project Proposal</td>
+                                    <td>v1.0</td>
+                                    <td>Project Team</td>
+                                    <td>Requirements Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-02</span></td>
+                                    <td>Software Requirements Specification (SRS)</td>
+                                    <td>v1.0</td>
+                                    <td>Requirements Team</td>
+                                    <td>Requirements Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/SRS.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-03</span></td>
+                                    <td>SCM Plan</td>
+                                    <td>v1.0</td>
+                                    <td>SCM Team</td>
+                                    <td>Requirements Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/SCM_Plan.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-04</span></td>
+                                    <td>System Design Document</td>
+                                    <td>v1.0</td>
+                                    <td>Design Team</td>
+                                    <td>Design Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/SystemDesignDocument.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-05</span></td>
+                                    <td>Database Design & Scripts</td>
+                                    <td>v1.1</td>
+                                    <td>Database Team</td>
+                                    <td>Design Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">database/food_waste_db.sql</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-06</span></td>
+                                    <td>Application Source Code</td>
+                                    <td>v1.0.0</td>
+                                    <td>Development Team</td>
+                                    <td>Development Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">frontend/, backend/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-07</span></td>
+                                    <td>AI Prediction Engine</td>
+                                    <td>v1.0</td>
+                                    <td>AI / Data Team</td>
+                                    <td>Development Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">AI_Model/predict_surplus.py</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-08</span></td>
+                                    <td>User Interface Prototypes</td>
+                                    <td>v1.0</td>
+                                    <td>UI/UX Team</td>
+                                    <td>Design Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">frontend/index.html</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-09</span></td>
+                                    <td>Software Test Plan</td>
+                                    <td>v1.0</td>
+                                    <td>QA Team</td>
+                                    <td>Testing Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/TestPlan.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-10</span></td>
+                                    <td>Test Cases & Automation Suite</td>
+                                    <td>v1.0</td>
+                                    <td>QA Team</td>
+                                    <td>Testing Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">test/test_donation.py</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-11</span></td>
+                                    <td>User Manual</td>
+                                    <td>v1.0</td>
+                                    <td>Documentation Team</td>
+                                    <td>Release Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/UserManual.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-12</span></td>
+                                    <td>Deployment Guide</td>
+                                    <td>v1.0</td>
+                                    <td>DevOps Team</td>
+                                    <td>Release Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">docs/DeploymentGuide.md</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CI-13</span></td>
+                                    <td>Release Package</td>
+                                    <td>v1.0.0</td>
+                                    <td>Release Team</td>
+                                    <td>Release Baseline</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code class="code-path">release/Release_v1.0.0.md</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SubTab 2: Branching Strategy -->
+            <div id="sub-branching" class="sub-pane">
+                <div class="card">
+                    <h3 class="card-title">GitFlow Branching Architecture</h3>
+                    <p class="card-subtitle">Formal branching strategy ensuring production stability and controlled concurrent development.</p>
+
+                    <div class="branch-grid">
+                        <div class="branch-card main-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>main</h4>
+                                <span class="tag">Protected</span>
+                            </div>
+                            <p>Stores official, audited production releases. Direct commits are restricted. All code merges originate from audited release or hotfix branches.</p>
+                            <div class="branch-meta">Current Tag: <code>v1.0.0</code></div>
+                        </div>
+
+                        <div class="branch-card develop-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>develop</h4>
+                                <span class="tag">Integration</span>
+                            </div>
+                            <p>Core integration branch where completed sprint user stories and approved change requests merge after peer code review.</p>
+                            <div class="branch-meta">Sprint 1 - 6 Complete</div>
+                        </div>
+
+                        <div class="branch-card feature-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>feature/*</h4>
+                                <span class="tag">Development</span>
+                            </div>
+                            <p>Created from develop for new feature development. Merged back via Pull Request after passing automated CI tests.</p>
+                            <div class="branch-meta">e.g. <code>feature/food-donation-module</code>, <code>feature/ai-prediction-engine</code></div>
+                        </div>
+
+                        <div class="branch-card bugfix-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>bugfix/*</h4>
+                                <span class="tag">Resolution</span>
+                            </div>
+                            <p>Used to fix identified defects or implement approved Change Requests affecting integration.</p>
+                            <div class="branch-meta">e.g. <code>bugfix/fix-pickup-scheduling</code> (CR-003)</div>
+                        </div>
+
+                        <div class="branch-card release-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>release/*</h4>
+                                <span class="tag">Release Prep</span>
+                            </div>
+                            <p>Used for final stabilization, documentation baselining, and FCA/PCA audits before tagging production.</p>
+                            <div class="branch-meta">e.g. <code>release/v1.0.0</code></div>
+                        </div>
+
+                        <div class="branch-card hotfix-branch">
+                            <div class="branch-head">
+                                <span class="branch-dot"></span>
+                                <h4>hotfix/*</h4>
+                                <span class="tag">Urgent</span>
+                            </div>
+                            <p>Branches directly off main to resolve urgent production issues, then back-merged into develop and main.</p>
+                            <div class="branch-meta">e.g. <code>hotfix/security-patch-auth</code></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SubTab 3: Change Requests (CRs) -->
+            <div id="sub-cr-tracking" class="sub-pane">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Change Request (CR) Audit Trail</h3>
+                        <span class="table-subtitle">Controlled change management with CCB evaluation</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="scm-table">
+                            <thead>
+                                <tr>
+                                    <th>CR ID</th>
+                                    <th>Change Description</th>
+                                    <th>Affected CIs</th>
+                                    <th>Impact Assessment</th>
+                                    <th>CCB Status</th>
+                                    <th>Associated Git Branch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="mono-badge">CR-001</span></td>
+                                    <td>Update surplus-food prediction requirement & ML parameters</td>
+                                    <td>CI-02 (SRS), CI-07 (AI Engine)</td>
+                                    <td>Replaced static average with multi-factor regression; raised R² from 0.78 to 0.94</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code>feature/ai-prediction-engine</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CR-002</span></td>
+                                    <td>Add real-time NGO notification & instant claim requirement</td>
+                                    <td>CI-02 (SRS), CI-06 (Source)</td>
+                                    <td>Added instant status synchronization to prevent concurrent reservation conflicts</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code>feature/food-donation-module</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CR-003</span></td>
+                                    <td>Modify pickup scheduling flow & dispatch window conflict</td>
+                                    <td>CI-04 (SDD), CI-06 (Source)</td>
+                                    <td>Restricted volunteer pickup times within 4-hour hot food safety threshold</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code>bugfix/fix-pickup-scheduling</code></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="mono-badge">CR-004</span></td>
+                                    <td>Update database schema with storage condition and allergen fields</td>
+                                    <td>CI-05 (DB Design)</td>
+                                    <td>Added <code>storage_req</code>, <code>allergen_info</code>, and <code>packaging_type</code> columns</td>
+                                    <td><span class="status-pill approved">Approved</span></td>
+                                    <td><code>develop</code> (via migration)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SubTab 4: FCA / PCA Audits -->
+            <div id="sub-audits" class="sub-pane">
+                <div class="card">
+                    <h3 class="card-title">Configuration Auditing Verification Matrix</h3>
+                    <p class="card-subtitle">Formal verification under IEEE 828 and CMMI process compliance</p>
+
+                    <div class="audit-split">
+                        <div class="audit-box">
+                            <h4>Functional Configuration Audit (FCA)</h4>
+                            <p>Verifies software behavior conforms to approved SRS requirements.</p>
+                            <ul class="audit-list">
+                                <li class="pass"><span class="check">✓</span> <strong>FR-01 Food Registration:</strong> Verified via Unit Test TC-01</li>
+                                <li class="pass"><span class="check">✓</span> <strong>FR-02 AI Surplus Prediction:</strong> Verified via Test TC-03 (94.2% Acc)</li>
+                                <li class="pass"><span class="check">✓</span> <strong>FR-03 NGO Real-Time Claim:</strong> Verified via Concurrency Test TC-05</li>
+                                <li class="pass"><span class="check">✓</span> <strong>FR-04 Pickup Logistics:</strong> Verified via Dispatch Test TC-07</li>
+                                <li class="pass"><span class="check">✓</span> <strong>FR-05 Safety Time Window:</strong> Verified via Boundary Test TC-02</li>
+                            </ul>
+                        </div>
+
+                        <div class="audit-box">
+                            <h4>Physical Configuration Audit (PCA)</h4>
+                            <p>Verifies completeness and version consistency of all 13 artifacts.</p>
+                            <ul class="audit-list">
+                                <li class="pass"><span class="check">✓</span> <strong>Codebase Integrity:</strong> Frontend, backend, database scripts verified</li>
+                                <li class="pass"><span class="check">✓</span> <strong>Documentation Completeness:</strong> SRS, SCMP, SDD, User Manual verified</li>
+                                <li class="pass"><span class="check">✓</span> <strong>AI Model Files:</strong> Scikit-Learn script and metadata verified</li>
+                                <li class="pass"><span class="check">✓</span> <strong>Automated Test Suite:</strong> Python unit tests and Postman collection verified</li>
+                                <li class="pass"><span class="check">✓</span> <strong>Release Packaging:</strong> Release v1.0.0 baselined and tagged</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div>
+                <strong>AI-Based Food Waste Reduction & Donation Management System</strong>
+                <p>Software Configuration Management (ISWE403L) Tool Demonstration • Dravid Anand B (23MIS0036) • VIT</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/chidhambarambabu/SCM_TOOL_IM.git" target="_blank">View GitHub Repository</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
